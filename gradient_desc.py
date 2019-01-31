@@ -20,7 +20,6 @@ from sklearn.metrics import classification_report
 
 #Load Data
 data = pd.read_csv( 'HTRU_2.csv' )
-# data.head()
 m=data.shape[0]
 n=8
 k=2
@@ -36,9 +35,8 @@ X[:,7]=data['x7'].values
 X[:,8]=data['x8'].values
 y=data['y'].values
 
-print(y.shape[0])
+# print(y.shape[0])
 
-# print("aaa ",y[0:4].dot(X[0:4,1:3]))
 
 for i in range(1,9):
 	X[:,i]=(X[:,i]-X[:,i].mean())/X[:,i].std()
@@ -56,35 +54,23 @@ def costFunction(X,y,theta,_lambda=0.1):
 def der_costFunction(X,y,theta,_lambda=0.1):
 	m=y.shape[0]
 	y=y.reshape((m,1))
-	# print("y ",y.shape)
-	# print("ss ",X.shape,theta.shape)
 	c=theta.T
-	# print("c ",c.shape)
 	h=sigmoid(X.dot(c))
-	# print("h ",h.shape)
 	b=h-y
-	# print("b ",b.shape)
 	a=(X.T.dot(b))
-	# print("aaas ",h.shape,a.shape)
 	reg=(_lambda*np.sum(theta))/m
 	return (1/m)*a+reg
 
 def gradientDescent(theta,X,y,lr=0.001,conv=0.00001):
 	cost_iter=[]
-	# print("aaa ",theta.shape)
 	cost=costFunction(X,y,theta)
- 	
 	cost_iter.append([0 ,cost])
 	change_cost=cost
-	# print("aaa ",change_cost.shape)
 	i=1
 	while(change_cost>conv):
-		# print("a")
 		old_cost=cost
 		theta=theta-(lr*der_costFunction(X,y,theta)).T
-		# print("aaa ",theta.shape)
 		cost=costFunction(X,y,theta)
-		# print("aaa ",cost.shape)
 		cost_iter.append([i ,cost])
 		change_cost=old_cost-cost
 		i+=1
@@ -103,20 +89,11 @@ X_train, X_rem, y_train, y_rem = train_test_split(X, y, test_size = 0.4, random_
 
 X_rem_cv, X_rem_test, y_rem_cv, y_rem_test = train_test_split(X_rem, y_rem, test_size = 0.5, random_state = 11)
 
-# print(X_rem_test.shape[0])
-# theta=
-
-# logmodel = LogisticRegression()
-# logmodel.fit(X_train,y_train)
-# predictions = logmodel.predict(X_rem)
-# print(classification_report(y_rem,predictions))
 theta = np.zeros((1,n+1))
-print(costFunction(X_train,y_train,theta))
-print(X_train.shape , y_train.shape)
-# h=y_train.T.dot(X_train)
-# print("aman ",h.shape)
-alpha=der_costFunction(X_train,y_train,theta)
-print(alpha)
+# print(costFunction(X_train,y_train,theta))
+# print(X_train.shape , y_train.shape)
+# alpha=der_costFunction(X_train,y_train,theta)
+# print(alpha)
 theta,cost_itr=gradientDescent(theta,X_train,y_train)
 
 predictions=predict(X_rem_cv,theta)
@@ -126,8 +103,8 @@ print(accuracy_score(y_rem_cv,predictions))
 
 print("training cost: ",costFunction(X_train,y_train,theta) ,"cross_validation cost: ",costFunction(X_rem_cv,y_rem_cv,theta))
 
-# h=sigmoid(X.dot(theta))
-# h=np.log(h)
-# h=y.T.dot(h)
-# print(h)
-print(X[0,0],X[0,1])
+# # h=sigmoid(X.dot(theta))
+# # h=np.log(h)
+# # h=y.T.dot(h)
+# # print(h)
+# print(X[0,0],X[0,1])
