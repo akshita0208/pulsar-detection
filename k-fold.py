@@ -110,37 +110,3 @@ for train_index, test_index in folds.split(X,y):
 print(scores_logistic)
 
 print(np.mean(scores_logistic))
-# X_train, X_rem, y_train, y_rem = train_test_split(X, y, test_size = 0.4, random_state = 11)
-
-# X_rem_cv, X_rem_test, y_rem_cv, y_rem_test = train_test_split(X_rem, y_rem, test_size = 0.5, random_state = 11)
-
-# # print(X_rem_test.shape[0])
-# # theta=
-
-# # logmodel = LogisticRegression()
-# # logmodel.fit(X_train,y_train)
-# # predictions = logmodel.predict(X_rem)
-# # print(classification_report(y_rem,predictions))
-# theta = np.zeros((1,n+1))
-# print(costFunction(X_train,y_train,theta))
-# print(X_train.shape , y_train.shape)
-# # h=y_train.T.dot(X_train)
-# # print("aman ",h.shape)
-# alpha=der_costFunction(X_train,y_train,theta)
-# print(alpha)
-# theta,cost_itr=gradientDescent(theta,X_train,y_train)
-
-# predictions=predict(X_rem_cv,theta)
-# predictions_test=predict(X_rem_test,theta)
-# print(theta)
-# print(classification_report(y_rem_cv,predictions))
-# print(accuracy_score(y_rem_test,predictions_test))
-
-# print("training cost: ",costFunction(X_train,y_train,theta) ,"cross_validation cost: ",costFunction(X_rem_cv,y_rem_cv,theta))
-
-# print("itr: ",cost_itr.shape)
-# h=sigmoid(X.dot(theta))
-# h=np.log(h)
-# h=y.T.dot(h)
-# print(h)
-print(X[0,0],X[0,1])
